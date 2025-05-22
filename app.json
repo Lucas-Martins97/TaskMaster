@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "my-expo-app",
-    "slug": "my-expo-app",
+    "name": "TaskMaster",
+    "slug": "TaskMaster",
     "version": "1.0.0",
 
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon/favicon.png"
     },
 
     "experiments": {
@@ -15,14 +15,14 @@
     "plugins": [],
 
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon/icon.png",
 
     "userInterfaceStyle": "light",
 
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3206f1"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -30,8 +30,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/icon/adaptive-icon.png",
+        "backgroundColor": "#3206f1"
       }
     }
   }
