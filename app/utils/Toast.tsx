@@ -22,7 +22,7 @@ export default class ToastMessage {
       text1: data.text1,
       text2: data.text2,
       position: 'top',
-      visibilityTime: 1000,
+      visibilityTime: 2000,
     });
   }
 }

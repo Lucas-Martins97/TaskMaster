@@ -1,16 +1,25 @@
 import { View, Text } from 'react-native';
 import useTheme from 'app/utils/hooks/useTheme';
 import Theme from 'app/utils/theme';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import InputComponent from 'app/components/InputComponent';
 import { useForm, Controller } from 'react-hook-form';
 import routeController from 'app/route/routeController';
 import ToastMessage from 'app/utils/Toast';
 import ButtonComponent from 'app/components/ButtonComponent';
-import { userData } from 'app/config/types';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+
+import { userData, RootStackParamList } from 'app/config/types';
 
 export default function Register() {
+  const [showError, setShowError] = useState<boolean>(false);
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const { theme } = useTheme();
+  const onInvalid = () => {
+    setShowError(true);
+    setTimeout(() => setShowError(false), 3000);
+  };
 
   const {
     control,
@@ -41,23 +50,14 @@ export default function Register() {
         text2: request.message,
         type: 'success',
       });
+      setTimeout(() => {
+        navigation.navigate('Login');
+      }, 1000);
     }
   };
 
-  useEffect(() => {
-    const showError = async () => {
-      if (errors.login || errors.password) {
-        await ToastMessage.error({
-          text1: 'Temos um Erro',
-          text2: 'Preencha todos os Campos',
-          type: 'error',
-        });
-      }
-    };
-    showError();
-  }, [errors.login]);
   return (
-    <View className="mx-auto w-[90%]">
+    <View className="mx-auto w-[100%]">
       <View>
         <Text
           className={`${Theme.getTextColor(theme)} mb-[20px] text-center text-[25px] font-bold`}>
@@ -93,7 +93,13 @@ export default function Register() {
           />
         )}
       />
-      <ButtonComponent cta="Cadastrar" function={handleSubmit(onSubmit)} />
+
+      <ButtonComponent cta="Cadastrar" function={handleSubmit(onSubmit, onInvalid)} />
+      {showError && (
+        <View className="mx-auto mt-[20px] w-[80%] items-center justify-center rounded-[10px] border-[1px] border-red-700 bg-red-200 p-[10px] ">
+          <Text className="text-red-800">Preencha todos os campos !</Text>
+        </View>
+      )}
     </View>
   );
 }

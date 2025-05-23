@@ -3,28 +3,24 @@
     "name": "TaskMaster",
     "slug": "TaskMaster",
     "version": "1.0.0",
-
     "web": {
       "favicon": "./assets/icon/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "plugins": [],
-
     "orientation": "portrait",
     "icon": "./assets/icon/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/icon/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#3206f1"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -32,6 +28,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon/adaptive-icon.png",
         "backgroundColor": "#3206f1"
+      },
+      "package": "com.zazoe.TaskMaster"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1953e9ba-2ce0-464b-8ea6-7bce7441bb3c"
       }
     }
   }

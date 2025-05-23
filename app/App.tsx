@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from './utils/context/themeContext';
+import { LoginProvider } from './utils/context/loginContext';
 import Layout from './Layout';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -25,14 +26,16 @@ function withLayout(Component: React.ComponentType) {
 export default function App() {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={withLayout(Login)} />
-          <Stack.Screen name="Cadastro" component={withLayout(Register)} />
-          <Stack.Screen name="Home" component={withLayout(Home)} />
-        </Stack.Navigator>
-      </NavigationContainer>
-      <Toast config={toastConfig} />
+      <LoginProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={withLayout(Login)} />
+            <Stack.Screen name="Cadastro" component={withLayout(Register)} />
+            <Stack.Screen name="Home" component={withLayout(Home)} />
+          </Stack.Navigator>
+        </NavigationContainer>
+        <Toast config={toastConfig} />
+      </LoginProvider>
     </ThemeProvider>
   );
 }

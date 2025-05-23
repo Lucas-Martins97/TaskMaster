@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import useTheme from 'app/utils/hooks/useTheme';
 import InputComponent from 'app/components/InputComponent';
 import ButtonComponent from 'app/components/ButtonComponent';
@@ -8,17 +8,21 @@ import routeController from 'app/route/routeController';
 import ToastMessage from 'app/utils/Toast';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList, userData } from 'app/config/types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Theme from 'app/utils/theme';
+import useLogin from 'app/utils/hooks/useLogin';
 
 export default function Login() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const { theme } = useTheme();
+  const { setLogin } = useLogin();
+  const [showError, setShowError] = useState<boolean>(false);
+
+  // Configuração inicial do formulário com valores padrão
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = useForm<userData>({
     defaultValues: {
       login: '',
@@ -26,18 +30,13 @@ export default function Login() {
     },
   });
 
-  useEffect(() => {
-    const showError = async () => {
-      if (errors.login || errors.password) {
-        await ToastMessage.error({
-          text1: 'Temos um Erro',
-          text2: 'Preencha todos os Campos',
-          type: 'error',
-        });
-      }
-    };
-    showError();
-  }, [errors.login]);
+  // Exibe mensagem de erro por 3 segundos caso os campos estejam inválidos
+  const onInvalid = () => {
+    setShowError(true);
+    setTimeout(() => setShowError(false), 3000);
+  };
+
+  // Lógica de login: envia dados normalizados para a API e trata a resposta
   const onSubmit = async (data: userData) => {
     const normalizeData = {
       login: data.login.toLowerCase(),
@@ -56,7 +55,7 @@ export default function Login() {
         text2: request.message,
         type: 'success',
       });
-      await AsyncStorage.setItem('user', normalizeData.login);
+      setLogin(normalizeData.login);
       setTimeout(() => {
         navigation.navigate('Home');
       }, 1000);
@@ -98,6 +97,7 @@ export default function Login() {
           />
         )}
       />
+
       <View className="mx-auto mb-[20px] flex w-[80%] flex-row">
         <Text className={`${Theme.getTextColor(theme)}`}>Não possui conta ?</Text>
         <TouchableOpacity
@@ -107,7 +107,12 @@ export default function Login() {
           <Text className={`${Theme.getTitleColor(theme)}`}> Clique aqui !</Text>
         </TouchableOpacity>
       </View>
-      <ButtonComponent cta="Entrar" function={handleSubmit(onSubmit)} />
+      <ButtonComponent cta="Entrar" function={handleSubmit(onSubmit, onInvalid)} />
+      {showError && (
+        <View className="mx-auto mt-[20px] w-[80%] items-center justify-center rounded-[10px] border-[1px] border-red-700 bg-red-200 p-[10px] ">
+          <Text className="text-red-800">Preencha todos os campos !</Text>
+        </View>
+      )}
     </View>
   );
 }
