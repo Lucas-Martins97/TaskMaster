@@ -1,6 +1,14 @@
 # 📝TaskMaster📝
 
 TaskMaster é um TodoList desenvolvido como parte do processo de entrevista da empresa MXM Group.
+
+## ⚙️Tecnologias Utilizadas
+* ReactNative; 
+* NativeWind;
+* TypeScript;
+* Expo;
+* React Native Toast Message;
+
 ## 🚀Instalação
 
 Faça o clone deste repositório usando o comando:
@@ -51,6 +59,187 @@ A criação de um novo kanban solicita um **hex** para background. É necessári
 
 Os dados ficam salvos de login para login até a reinicialização da aplicação. Enquanto o terminal estiver rodando, os dados — mesmo entre logins diferentes — permanecerão salvos.
 
+# Documentação das Rotas
+
+## ↗️ Rotas  
+📂 **routeController** 📂
+
+### Endpoints / Métodos
+<details>
+
+<summary>
+
+Clique Aqui para mais informações de rotas 
+
+</summary>
+
+#### 1. **login(data: userData)**
+
+Realiza login do usuário, verificando se o usuário existe e se a senha está correta.
+
+- **Parâmetros:**
+  - `data` (userData): Objeto com campos `login` e `password`.
+
+- **Retorno:**
+  - `200` - Login feito com sucesso.
+  - `404` - Senha ou email incorretos.
+
+---
+
+#### 2. **register(data: userData)**
+
+Registra um novo usuário se ainda não existir um usuário com o mesmo login.
+
+- **Parâmetros:**
+  - `data` (userData): Objeto com os dados do usuário (`login`, `password`, etc).
+
+- **Retorno:**
+  - `200` - Usuário cadastrado com sucesso.
+  - `409` - Usuário já cadastrado.
+
+---
+
+#### 3. **getTodo(login: string)**
+
+Busca as tarefas do usuário. Se o usuário não possuir tarefas, cria listas padrão para ele.
+
+- **Parâmetros:**
+  - `login` (string): Login do usuário.
+
+- **Retorno:**
+  - `200` + objeto `todo` contendo as listas de tarefas do usuário.
+  - Se o usuário não existir, cria um novo registro com listas padrão e retorna mensagem de inclusão.
+
+---
+
+#### 4. **setTodo(data: itemsData, login: string)**
+
+Adiciona uma nova tarefa em uma lista kanban específica do usuário.
+
+- **Parâmetros:**
+  - `data` (itemsData): Objeto contendo `kanbanTitle` e `itemTitle`.
+  - `login` (string): Login do usuário.
+
+- **Retorno:**
+  - `200` - Tarefa criada com sucesso + lista atualizada de tarefas.
+  - `409` - Tarefa já existe.
+  - `404` - Usuário não encontrado.
+
+---
+
+#### 5. **deleteTodo(kanban: toDo, item: itemHandle, id: number, login: string)**
+
+Deleta uma tarefa específica de uma lista kanban do usuário.
+
+- **Parâmetros:**
+  - `kanban` (toDo): Objeto com a lista kanban onde a tarefa está.
+  - `item` (itemHandle): Objeto da tarefa a ser deletada.
+  - `id` (number): Identificador da tarefa (não usado no código mas passado).
+  - `login` (string): Login do usuário.
+
+- **Retorno:**
+  - `200` - Tarefa deletada com sucesso + lista atualizada.
+  - `404` - Usuário, Kanban ou Tarefa não encontrados.
+
+---
+
+#### 6. **concludeTodo(kanban: toDo, item: itemHandle, id: number, login: string)**
+
+Marca uma tarefa como concluída.
+
+- **Parâmetros:**
+  - `kanban` (toDo): Objeto do kanban da tarefa.
+  - `item` (itemHandle): Objeto da tarefa.
+  - `id` (number): ID da tarefa.
+  - `login` (string): Login do usuário.
+
+- **Retorno:**
+  - `200` - Tarefa marcada como concluída + lista atualizada.
+  - `404` - Usuário ou tarefa não encontrados.
+
+---
+
+#### 7. **editTodoItem(newTitle: string, index: number, login: string, newKanbanTitle: string)**
+
+Edita o título de uma tarefa e/ou move a tarefa para outro kanban.
+
+- **Parâmetros:**
+  - `newTitle` (string): Novo título da tarefa.
+  - `index` (number): Índice do kanban original na lista do usuário.
+  - `login` (string): Login do usuário.
+  - `newKanbanTitle` (string): Título do kanban de destino.
+
+- **Retorno:**
+  - `200` - Tarefa atualizada com sucesso + lista atualizada.
+  - `404` - Usuário, Kanban original, Kanban destino ou tarefa não encontrados.
+  - Mensagem indicando se nenhuma alteração foi detectada.
+
+---
+
+#### 8. **createKanban(login: string, kanbanName: string, kanbanColor: string)**
+
+Cria um novo kanban para o usuário, se não existir um kanban com o mesmo nome.
+
+- **Parâmetros:**
+  - `login` (string): Login do usuário.
+  - `kanbanName` (string): Nome do novo kanban.
+  - `kanbanColor` (string): Cor de fundo do kanban.
+
+- **Retorno:**
+  - `200` - Kanban criado com sucesso + lista atualizada.
+  - `409` - Kanban já existe.
+  - `404` - Usuário não encontrado.
+
+---
+
+#### 9. **deleteKanban(kanban: toDo, login: string)**
+
+Deleta um kanban específico do usuário.
+
+- **Parâmetros:**
+  - `kanban` (toDo): Kanban a ser deletado.
+  - `login` (string): Login do usuário.
+
+- **Retorno:**
+  - `200` - Kanban deletado com sucesso + lista atualizada.
+  - `404` - Usuário ou Kanban não encontrados.
+
+---
+
+#### Tipos utilizados
+
+```ts
+type userData = {
+  login: string;
+  password: string;
+};
+
+type toDo = {
+  kanbanTitle: string;
+  bgKanbanColor: string;
+  list: itemHandle[];
+};
+
+type itemHandle = {
+  title: string;
+  finish: boolean;
+};
+
+type toDoData = {
+  login: string;
+  todo: toDo[];
+};
+
+type itemsData = {
+  kanbanTitle: string;
+  itemTitle: string;
+};
+
+
+```
+
+
+</details>
 ## 🤝 Fique a vontade em contribuir
 
 Solicitações de *pull* são bem-vindas. Para alterações significativas, abra uma issue primeiro
