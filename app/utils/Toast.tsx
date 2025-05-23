@@ -12,7 +12,7 @@ export default class ToastMessage {
       type: data.type,
       text1: data.text1,
       text2: data.text2,
-      position: 'bottom',
+      position: 'top',
       visibilityTime: 2000,
     });
   }
@@ -21,7 +21,7 @@ export default class ToastMessage {
       type: data.type,
       text1: data.text1,
       text2: data.text2,
-      position: 'bottom',
+      position: 'top',
       visibilityTime: 1000,
     });
   }
