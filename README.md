@@ -240,6 +240,8 @@ type itemsData = {
 
 
 </details>
+
+
 ## 🤝 Fique a vontade em contribuir
 
 Solicitações de *pull* são bem-vindas. Para alterações significativas, abra uma issue primeiro
