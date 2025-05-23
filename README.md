@@ -45,6 +45,8 @@ A criação de novas tarefas ocorre através do Input disponivel na página apó
 
 A criação de um novo Kanban solicita um Hex para Background, é necessário o uso do HashTag, pode ser criado uma função para captar a cor através de um color picker, não implementado neste momento devido o tempo hábil de produção. Todavia, colocando o hex funciona perfeitamente.
 
+* Na página Home ao lado de Tarefas existe a palavra "Lista" que ao ser clicada pode alternar entre o modelo Lista e Kanban
+
 ## 💾 Dados  
 
 Os dados ficam salvos de login para login até reinicialização da aplicação, enquanto o terminal estiver rodando os dados por mais que em logins diferentes ficaram salvos.
