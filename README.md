@@ -43,7 +43,7 @@ Existem alguns usuários com cadastros criados e alguns deles ja possuem tarefas
 ## 📑Criação de novas tarefas e Kanban
 A criação de novas tarefas ocorre através do Input disponivel na página após o login, após digitar o nome da tarefa será questionado em qual kanban deseja utilizar, caso não tenha nenhum criado ou caso queira criar outro basta clicar no botão "novo".
 
-A criação de um novo Kanban solicita um Hex para Background, é necessário o uso do HashTag, pode ser criado uma função para captar a cor através de um color picker, não implementado neste momento devido o tempo hábil de produção. Todavia, colocando o hex funciona perfeitamente.
+A criação de um novo Kanban solicita um **Hex para Background**, é necessário o uso do **HashTag** exemplo: #2b373d, pode ser criado uma função para captar a cor através de um color picker, não implementado neste momento devido o tempo hábil de produção. Todavia, colocando o hex funciona perfeitamente.
 
 * Na página Home ao lado de Tarefas existe a palavra "Lista" que ao ser clicada pode alternar entre o modelo Lista e Kanban
 
