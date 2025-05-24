@@ -143,7 +143,7 @@ export default function KanbanView() {
         className={`mt-4 h-[550px] rounded-[10px] border-[1px] ${theme === 'dark' ? 'border-purple-700' : 'border-blue-700'} p-[10px]`}>
         {todoList.map((kanban, i) => (
           <View key={i} className="mr-4 w-[300px] rounded-lg bg-gray-100 p-2 dark:bg-gray-800">
-            <Text className="mb-2 text-center text-lg font-bold text-black dark:text-white">
+            <Text className="mb-2 text-center text-[20px] font-bold  text-black dark:text-white">
               {kanban.kanbanTitle}
             </Text>
             <ScrollView>

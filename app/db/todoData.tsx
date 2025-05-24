@@ -6,7 +6,7 @@ const toDoDatas: toDoData[] = [
     todo: [
       {
         kanbanTitle: 'Mercado',
-        bgKanbanColor: '#9ca619',
+        bgKanbanColor: '#f7e175',
         list: [
           {
             title: 'Comprar Pão',
@@ -24,7 +24,7 @@ const toDoDatas: toDoData[] = [
       },
       {
         kanbanTitle: 'Tarefas',
-        bgKanbanColor: '#1930a6',
+        bgKanbanColor: '#b7dbe4',
         list: [
           {
             title: 'Ir ao Mercado',
