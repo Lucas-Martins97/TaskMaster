@@ -55,9 +55,15 @@ A criação de um novo kanban solicita um **hex** para background. É necessári
 
 * Na página **Home**, ao lado de "Tarefas", existe a palavra "Lista" que, ao ser clicada, alterna entre os modelos **Lista** e **Kanban**.
 
+
+## 📱 Download
+
+Para fazer o download do apk você pode acessar o link: [Build Expo](https://expo.dev/accounts/zazoe/projects/TaskMaster/builds/274ffac1-c08c-42b0-83a7-318f5b9aa1a7)
+
+
 ## 💾 Dados  
 
-Os dados ficam salvos de login para login até a reinicialização da aplicação. Enquanto o terminal estiver rodando, os dados — mesmo entre logins diferentes — permanecerão salvos.
+Os dados ficam salvos de login para login até a reinicialização da aplicação, caso esteja utilizando o aplicativo instalado, quando fechar toda a aplicação os dados adicionados serão perdidos. Para aplicações rodando através do **npx expo start** enquanto o terminal estiver rodando, os dados — mesmo entre logins diferentes — permanecerão salvos.
 
 # Documentação das Rotas
 
